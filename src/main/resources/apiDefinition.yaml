@@ -110,6 +110,9 @@ components:
           type: string
         password:
           type: string
+          minLength: 8
+          maxLength: 45
+          pattern: "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,45}$"
     Error:
       type: object
       required:

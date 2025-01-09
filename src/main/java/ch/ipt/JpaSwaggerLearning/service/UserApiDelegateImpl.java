@@ -4,15 +4,15 @@ import ch.ipt.JpaSwaggerLearning.model.UserEntity;
 import ch.ipt.JpaSwaggerLearning.openapi.api.UsersApiDelegate;
 import ch.ipt.JpaSwaggerLearning.openapi.model.UserCreateDTO;
 import ch.ipt.JpaSwaggerLearning.openapi.model.UserDTO;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.request.NativeWebRequest;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,7 +22,7 @@ public class UserApiDelegateImpl implements UsersApiDelegate {
     private UserService userService;
 
     @Override
-    public ResponseEntity<Void> createUser(UserCreateDTO userCreateDTO) {
+    public ResponseEntity<Void> createUser(@Valid @RequestBody UserCreateDTO userCreateDTO) {
         // Create the user using the service
         Integer userId = userService.createUser(userCreateDTO);
 
