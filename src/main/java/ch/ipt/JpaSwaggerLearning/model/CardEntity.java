@@ -2,6 +2,8 @@ package ch.ipt.JpaSwaggerLearning.model;
 
 import jakarta.persistence.*;
 
+import java.util.UUID;
+
 @Entity
 @Table(name = "t_card")
 public class CardEntity {
@@ -9,9 +11,15 @@ public class CardEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String UUID;
+    private String uuid;
 
     private String cardNumber;
+
+    public CardEntity(){
+        if (this.uuid == null) { // Only set UUID if it is null
+            this.uuid = UUID.randomUUID().toString();
+        }
+    }
 
     public Integer getId() {
         return id;
@@ -22,11 +30,11 @@ public class CardEntity {
     }
 
     public String getUUID() {
-        return UUID;
+        return uuid;
     }
 
-    public void setUUID(String UUID) {
-        this.UUID = UUID;
+    public void setUUID(String uuid) {
+        this.uuid = uuid;
     }
 
     public String getCardNumber() {

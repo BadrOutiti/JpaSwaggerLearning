@@ -1,8 +1,8 @@
 package ch.ipt.JpaSwaggerLearning.service;
 
 import ch.ipt.JpaSwaggerLearning.model.UserEntity;
-import ch.ipt.JpaSwaggerLearning.openapi.model.UserCreateDTO;
-import ch.ipt.JpaSwaggerLearning.openapi.model.UserDTO;
+import ch.ipt.JpaSwaggerLearning.openapi.user.model.UserCreateDTO;
+import ch.ipt.JpaSwaggerLearning.openapi.user.model.UserDTO;
 import ch.ipt.JpaSwaggerLearning.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

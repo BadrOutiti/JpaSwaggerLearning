@@ -95,17 +95,61 @@
 				<artifactId>openapi-generator-maven-plugin</artifactId>
 				<version>7.10.0</version>
 				<executions>
+					<!-- Execution for userDefinition.yaml -->
 					<execution>
+						<id>generate-user-api</id>
 						<goals>
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>
-								${project.basedir}/src/main/resources/userDefinition.yaml
-							</inputSpec>
+							<inputSpec>${project.basedir}/src/main/resources/userDefinition.yaml</inputSpec>
 							<generatorName>spring</generatorName>
-							<apiPackage>ch.ipt.JpaSwaggerLearning.openapi.api</apiPackage>
-							<modelPackage>ch.ipt.JpaSwaggerLearning.openapi.model</modelPackage>
+							<apiPackage>ch.ipt.JpaSwaggerLearning.openapi.user.api</apiPackage>
+							<modelPackage>ch.ipt.JpaSwaggerLearning.openapi.user.model</modelPackage>
+							<supportingFilesToGenerate>
+								ApiUtil.java
+							</supportingFilesToGenerate>
+							<modelNameSuffix>DTO</modelNameSuffix>
+							<configOptions>
+								<useJakartaEe>true</useJakartaEe>
+								<delegatePattern>true</delegatePattern>
+							</configOptions>
+						</configuration>
+					</execution>
+
+					<!-- Execution for cardDefinition.yaml -->
+					<execution>
+						<id>generate-card-api</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${project.basedir}/src/main/resources/cardDefinition.yaml</inputSpec>
+							<generatorName>spring</generatorName>
+							<apiPackage>ch.ipt.JpaSwaggerLearning.openapi.card.api</apiPackage>
+							<modelPackage>ch.ipt.JpaSwaggerLearning.openapi.card.model</modelPackage>
+							<supportingFilesToGenerate>
+								ApiUtil.java
+							</supportingFilesToGenerate>
+							<modelNameSuffix>DTO</modelNameSuffix>
+							<configOptions>
+								<useJakartaEe>true</useJakartaEe>
+								<delegatePattern>true</delegatePattern>
+							</configOptions>
+						</configuration>
+					</execution>
+
+					<!-- Execution for accountDefinition.yaml -->
+					<execution>
+						<id>generate-account-api</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${project.basedir}/src/main/resources/accountDefinition.yaml</inputSpec>
+							<generatorName>spring</generatorName>
+							<apiPackage>ch.ipt.JpaSwaggerLearning.openapi.account.api</apiPackage>
+							<modelPackage>ch.ipt.JpaSwaggerLearning.openapi.account.model</modelPackage>
 							<supportingFilesToGenerate>
 								ApiUtil.java
 							</supportingFilesToGenerate>

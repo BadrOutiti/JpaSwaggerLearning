@@ -1,9 +1,9 @@
 package ch.ipt.JpaSwaggerLearning.service;
 
 import ch.ipt.JpaSwaggerLearning.model.UserEntity;
-import ch.ipt.JpaSwaggerLearning.openapi.api.UsersApiDelegate;
-import ch.ipt.JpaSwaggerLearning.openapi.model.UserCreateDTO;
-import ch.ipt.JpaSwaggerLearning.openapi.model.UserDTO;
+import ch.ipt.JpaSwaggerLearning.openapi.user.api.UsersApiDelegate;
+import ch.ipt.JpaSwaggerLearning.openapi.user.model.UserCreateDTO;
+import ch.ipt.JpaSwaggerLearning.openapi.user.model.UserDTO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
