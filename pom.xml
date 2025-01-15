@@ -101,7 +101,7 @@
 						</goals>
 						<configuration>
 							<inputSpec>
-								${project.basedir}/src/main/resources/apiDefinition.yaml
+								${project.basedir}/src/main/resources/userDefinition.yaml
 							</inputSpec>
 							<generatorName>spring</generatorName>
 							<apiPackage>ch.ipt.JpaSwaggerLearning.openapi.api</apiPackage>

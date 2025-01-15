@@ -32,7 +32,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: './shared.yaml#/components/schemas/Error'
     post:
       summary: Create a User
       operationId: createUser
@@ -58,7 +58,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: './shared.yaml#/components/schemas/Error'
 
   /users/{userId}:
     get:
@@ -85,7 +85,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: './shared.yaml#/components/schemas/Error'
 
 components:
   schemas:
@@ -113,14 +113,3 @@ components:
           minLength: 8
           maxLength: 45
           pattern: "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,45}$"
-    Error:
-      type: object
-      required:
-        - code
-        - message
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
