@@ -37,15 +37,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AccountCreate'
+              $ref: '#/components/schemas/AccountReference'
       responses:
         '201':
           description: Account created
           headers:
             Location:
-              description: URI of the created resource
+              description: Id of created account
               schema:
-                type: string
+                type: integer
         '400':
           description: Bad request
           content:
@@ -61,26 +61,14 @@ components:
         - Cards
       properties:
         User:
-          type: object
-          properties:
-            uuid:
-              type: string
-            name:
-              type: string
+          $ref: './userDefinition.yaml#/components/schemas/User'
         Cards:
-          type: array
-          items:
-            type: object  # Specify the type of elements in the array
-            properties:
-              id:
-                type: string
-              cardNumber:
-                type: string
-    AccountCreate:
+          $ref: './cardDefinition.yaml#/components/schemas/Cards'
+    AccountReference:
       type: object
       required:
-        - UserUUID
+        - UserId
       properties:
-        UserUUID:
-          type: string
+        UserId:
+          type: integer
 

@@ -64,6 +64,12 @@ components:
           type: string
         cardNumber:
           type: string
+
+    Cards:
+      type: array
+      items:
+        $ref: "#/components/schemas/Card"  # Reference to the Card schema
+
     CardCreate:
       type: object
       required:
