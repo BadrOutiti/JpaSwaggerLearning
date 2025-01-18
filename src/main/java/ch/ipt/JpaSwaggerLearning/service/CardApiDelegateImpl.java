@@ -1,8 +1,9 @@
 package ch.ipt.JpaSwaggerLearning.service;
 
-import ch.ipt.JpaSwaggerLearning.openapi.card.api.CardApiDelegate;
-import ch.ipt.JpaSwaggerLearning.openapi.card.model.CardCreateDTO;
-import ch.ipt.JpaSwaggerLearning.openapi.card.model.CardDTO;
+
+import ch.ipt.JpaSwaggerLearning.openapi.api.CardApiDelegate;
+import ch.ipt.JpaSwaggerLearning.openapi.model.CardCreateDTO;
+import ch.ipt.JpaSwaggerLearning.openapi.model.CardDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

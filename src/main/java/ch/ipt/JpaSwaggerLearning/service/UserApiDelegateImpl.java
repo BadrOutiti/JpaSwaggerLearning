@@ -1,9 +1,9 @@
 package ch.ipt.JpaSwaggerLearning.service;
 
 import ch.ipt.JpaSwaggerLearning.model.UserEntity;
-import ch.ipt.JpaSwaggerLearning.openapi.user.api.UsersApiDelegate;
-import ch.ipt.JpaSwaggerLearning.openapi.user.model.UserCreateDTO;
-import ch.ipt.JpaSwaggerLearning.openapi.user.model.UserDTO;
+import ch.ipt.JpaSwaggerLearning.openapi.api.UsersApiDelegate;
+import ch.ipt.JpaSwaggerLearning.openapi.model.UserCreateDTO;
+import ch.ipt.JpaSwaggerLearning.openapi.model.UserDTO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -37,7 +37,7 @@ public class UserApiDelegateImpl implements UsersApiDelegate {
     public ResponseEntity<List<UserDTO>> listUsers(Integer limit) {
         Page<UserEntity> userEntities = userService.getUsers(0, limit);
         List<UserDTO> userDTOS = userEntities.stream()
-                .map(entity -> new UserDTO(entity.getId().longValue(), entity.getName()))
+                .map(entity -> new UserDTO(entity.getId(), entity.getName()))
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok(userDTOS);
