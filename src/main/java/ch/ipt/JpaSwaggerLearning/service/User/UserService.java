@@ -15,6 +15,8 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
     private UserMapper userMapper;
 
     public Integer createUser(UserCreateDTO userCreateDTO){

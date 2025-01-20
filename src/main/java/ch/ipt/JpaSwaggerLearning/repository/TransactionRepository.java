@@ -10,10 +10,7 @@ import java.util.List;
 
 @Repository
 public interface TransactionRepository extends JpaRepository<TransactionEntity, Integer> {
-    @Query("SELECT t FROM TransactionEntity t JOIN FETCH t.cardEntity WHERE t.cardEntity.id = :cardId")
-    List<TransactionEntity> findTransactionEntityByCardIdTesting(@Param("cardId") int cardId);
-
-    List<TransactionEntity> findTransactionEntitiesByCardEntity_Uuid(String cardEntity_uuid);
-
-
+    @Query(value = "SELECT t.* FROM t_transaction t INNER JOIN t_card c ON t.card_id = c.id WHERE c.id = :cardId",
+            nativeQuery = true)
+    List<TransactionEntity> findTransactionEntityByCardId(@Param("cardId") int cardId);
 }

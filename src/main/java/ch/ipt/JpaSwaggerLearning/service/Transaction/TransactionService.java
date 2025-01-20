@@ -2,7 +2,6 @@ package ch.ipt.JpaSwaggerLearning.service.Transaction;
 
 import ch.ipt.JpaSwaggerLearning.mappers.TransactonMapper;
 import ch.ipt.JpaSwaggerLearning.model.TransactionEntity;
-import ch.ipt.JpaSwaggerLearning.openapi.model.CardDTO;
 import ch.ipt.JpaSwaggerLearning.openapi.model.TransactionDTO;
 import ch.ipt.JpaSwaggerLearning.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +29,7 @@ public class TransactionService {
     }
 
     public List<TransactionDTO> getTransactionsByCardId(int cardId){
-        List<TransactionEntity> transactionEntities = transactionRepository.findTransactionEntityByCardIdTesting(cardId);
+        List<TransactionEntity> transactionEntities = transactionRepository.findTransactionEntityByCardId(cardId);
         List<TransactionDTO> transactions = new ArrayList<>();
 
         for(TransactionEntity transactionEntity : transactionEntities){
