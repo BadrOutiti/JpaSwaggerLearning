@@ -1,4 +1,4 @@
-package ch.ipt.JpaSwaggerLearning.service;
+package ch.ipt.JpaSwaggerLearning.service.Card;
 
 
 import ch.ipt.JpaSwaggerLearning.openapi.api.CardApiDelegate;

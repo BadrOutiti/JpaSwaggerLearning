@@ -1,5 +1,6 @@
-package ch.ipt.JpaSwaggerLearning.service;
+package ch.ipt.JpaSwaggerLearning.service.User;
 
+import ch.ipt.JpaSwaggerLearning.mappers.UserMapper;
 import ch.ipt.JpaSwaggerLearning.model.UserEntity;
 import ch.ipt.JpaSwaggerLearning.openapi.model.UserCreateDTO;
 import ch.ipt.JpaSwaggerLearning.openapi.model.UserDTO;
@@ -14,6 +15,7 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+    private UserMapper userMapper;
 
     public Integer createUser(UserCreateDTO userCreateDTO){
         UserEntity userEntity = new UserEntity();
@@ -31,11 +33,7 @@ public class UserService {
     }
 
     public UserDTO getUserById(int id){
-        UserDTO userDTO = new UserDTO();
         UserEntity entity = userRepository.getReferenceById(id);
-        userDTO.setId(entity.getId());
-        userDTO.setName(entity.getName());
-
-        return userDTO;
+        return userMapper.MapUserEntityToUserDTO(entity);
     }
 }

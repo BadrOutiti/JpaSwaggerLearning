@@ -1,4 +1,4 @@
-package ch.ipt.JpaSwaggerLearning.service;
+package ch.ipt.JpaSwaggerLearning.service.Card;
 
 import ch.ipt.JpaSwaggerLearning.model.CardEntity;
 import ch.ipt.JpaSwaggerLearning.openapi.model.CardCreateDTO;

@@ -1,4 +1,4 @@
-package ch.ipt.JpaSwaggerLearning.service;
+package ch.ipt.JpaSwaggerLearning.service.User;
 
 import ch.ipt.JpaSwaggerLearning.model.UserEntity;
 import ch.ipt.JpaSwaggerLearning.openapi.api.UsersApiDelegate;

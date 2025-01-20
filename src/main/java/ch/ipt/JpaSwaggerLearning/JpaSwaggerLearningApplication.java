@@ -1,19 +1,13 @@
 package ch.ipt.JpaSwaggerLearning;
 
-import ch.ipt.JpaSwaggerLearning.model.UserEntity;
-import ch.ipt.JpaSwaggerLearning.model.AccountEntity;
-import ch.ipt.JpaSwaggerLearning.model.CardEntity;
-import ch.ipt.JpaSwaggerLearning.repository.UserRepository;
-import ch.ipt.JpaSwaggerLearning.repository.AccountRepository;
-import ch.ipt.JpaSwaggerLearning.repository.CardRepository;
+import ch.ipt.JpaSwaggerLearning.model.*;
+import ch.ipt.JpaSwaggerLearning.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.annotation.PostConstruct;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @SpringBootApplication
 public class JpaSwaggerLearningApplication {
@@ -26,6 +20,9 @@ public class JpaSwaggerLearningApplication {
 
 	@Autowired
 	private CardRepository cardRepository;
+
+	@Autowired
+	private TransactionRepository transactionRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(JpaSwaggerLearningApplication.class, args);
@@ -96,5 +93,21 @@ public class JpaSwaggerLearningApplication {
 		accountRepository.saveAll(Arrays.asList(account1, account2, account3, account4));
 
 		System.out.println("Dummy users, accounts, and cards have been inserted.");
+
+		// Inserting 20 random transactions
+		List<CardEntity> cards = cardRepository.findAll();
+		List<TransactionEntity> transactions = new ArrayList<>();
+
+		Random random = new Random();
+		for (int i = 0; i < 20; i++) {
+			TransactionEntity transaction = new TransactionEntity();
+			transaction.setAmountInChf(random.nextInt(500) + 10); // Random amount between 10 and 500
+			transaction.setDate(new Date());
+			transaction.setCardEntity(cards.get(random.nextInt(cards.size()))); // Assign to a random card
+			transactions.add(transaction);
+		}
+
+		transactionRepository.saveAll(transactions);
+		System.out.println("20 dummy transactions have been inserted.");
 	}
 }

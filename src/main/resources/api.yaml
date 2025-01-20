@@ -183,6 +183,58 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
+  /transaction:
+    get:
+      summary: Get a list of all transactions
+      operationId: listTransactions
+      tags:
+        - Transaction
+      responses:
+        '200':
+          description: A list of Transactions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transaction'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /transaction/{cardId}:
+    get:
+      summary: Get all transaction of a specific card
+      operationId: getTransactionsByCard
+      tags:
+        - Transaction
+      parameters:
+        - name: cardId
+          in: path
+          description: The ID of the Card to track
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Transaction List
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transaction'
+        '404':
+          description: No Transactions found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+
 components:
   schemas:
     User:
@@ -244,6 +296,7 @@ components:
           $ref: "#/components/schemas/User"
         Cards:
           $ref: "#/components/schemas/Cards"
+
     AccountReference:
       type: object
       required:
@@ -251,6 +304,20 @@ components:
       properties:
         UserId:
           type: integer
+
+    Transaction:
+      type: object
+      required:
+        - amountInChf
+        - Date
+        - Card
+      properties:
+        amountInChf:
+          type: integer
+        Date:
+          type: integer
+        Card:
+          $ref: "#/components/schemas/Card"
 
     Error:
       type: object

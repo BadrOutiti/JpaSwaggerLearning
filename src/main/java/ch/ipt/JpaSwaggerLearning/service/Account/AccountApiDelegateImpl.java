@@ -1,13 +1,15 @@
-package ch.ipt.JpaSwaggerLearning.service;
+package ch.ipt.JpaSwaggerLearning.service.Account;
 
 
 import ch.ipt.JpaSwaggerLearning.openapi.api.AccountApiDelegate;
+import ch.ipt.JpaSwaggerLearning.openapi.model.AccountDTO;
 import ch.ipt.JpaSwaggerLearning.openapi.model.AccountReferenceDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.net.URI;
+import java.util.List;
 
 @Service
 public class AccountApiDelegateImpl implements AccountApiDelegate {
@@ -27,10 +29,10 @@ public class AccountApiDelegateImpl implements AccountApiDelegate {
 
     }
 
-//    public ResponseEntity<List<AccountDTO>> listAccounts(){
-//
-//        return ResponseEntity.ok();
-//    }
+    @Override
+    public ResponseEntity<List<AccountDTO>> listAccounts(){
+        return ResponseEntity.ok(accountService.listAccounts());
+    }
 
 
 
