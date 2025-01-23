@@ -1,7 +1,13 @@
 package ch.ipt.JpaSwaggerLearning;
 
-import ch.ipt.JpaSwaggerLearning.model.*;
-import ch.ipt.JpaSwaggerLearning.repository.*;
+import ch.ipt.JpaSwaggerLearning.model.AccountEntity;
+import ch.ipt.JpaSwaggerLearning.model.CardEntity;
+import ch.ipt.JpaSwaggerLearning.model.TransactionEntity;
+import ch.ipt.JpaSwaggerLearning.model.UserEntity;
+import ch.ipt.JpaSwaggerLearning.repository.AccountRepository;
+import ch.ipt.JpaSwaggerLearning.repository.CardRepository;
+import ch.ipt.JpaSwaggerLearning.repository.TransactionRepository;
+import ch.ipt.JpaSwaggerLearning.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

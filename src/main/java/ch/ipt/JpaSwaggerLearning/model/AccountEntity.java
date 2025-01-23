@@ -2,7 +2,6 @@ package ch.ipt.JpaSwaggerLearning.model;
 
 import jakarta.persistence.*;
 
-import javax.smartcardio.Card;
 import java.util.List;
 
 @Entity

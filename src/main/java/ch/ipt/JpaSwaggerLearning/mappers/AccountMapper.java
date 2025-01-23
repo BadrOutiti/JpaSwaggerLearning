@@ -6,7 +6,6 @@ import ch.ipt.JpaSwaggerLearning.openapi.model.AccountDTO;
 import ch.ipt.JpaSwaggerLearning.openapi.model.CardDTO;
 import ch.ipt.JpaSwaggerLearning.openapi.model.UserDTO;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;

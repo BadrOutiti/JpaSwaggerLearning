@@ -1,6 +1,6 @@
 package ch.ipt.JpaSwaggerLearning.service.Transaction;
+
 import ch.ipt.JpaSwaggerLearning.openapi.api.TransactionApiDelegate;
-import ch.ipt.JpaSwaggerLearning.openapi.model.CardDTO;
 import ch.ipt.JpaSwaggerLearning.openapi.model.TransactionDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

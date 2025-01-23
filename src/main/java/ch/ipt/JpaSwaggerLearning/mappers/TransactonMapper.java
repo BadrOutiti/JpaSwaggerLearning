@@ -4,7 +4,6 @@ import ch.ipt.JpaSwaggerLearning.model.TransactionEntity;
 import ch.ipt.JpaSwaggerLearning.openapi.model.TransactionDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 @Component
 public class TransactonMapper {
