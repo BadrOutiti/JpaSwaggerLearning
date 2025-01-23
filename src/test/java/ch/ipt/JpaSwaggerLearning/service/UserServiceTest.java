@@ -88,7 +88,7 @@ class UserServiceTest {
         UserDTO userDTO = new UserDTO(1, "Alice");
 
         when(userRepository.getReferenceById(1)).thenReturn(user);
-        when(userMapper.MapUserEntityToUserDTO(user)).thenReturn(userDTO); // ✅ Mock the mapping
+        when(userMapper.mapUserEntityToUserDTO(user)).thenReturn(userDTO); // ✅ Mock the mapping
 
         // WHEN
         UserDTO result = userService.getUserById(1);
@@ -97,6 +97,6 @@ class UserServiceTest {
         assertNotNull(result);
         assertEquals("Alice", result.getName());
         verify(userRepository, times(1)).getReferenceById(1);
-        verify(userMapper, times(1)).MapUserEntityToUserDTO(user);
+        verify(userMapper, times(1)).mapUserEntityToUserDTO(user);
     }
 }

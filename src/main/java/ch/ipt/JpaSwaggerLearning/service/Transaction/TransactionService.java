@@ -1,10 +1,9 @@
 package ch.ipt.JpaSwaggerLearning.service.Transaction;
 
-import ch.ipt.JpaSwaggerLearning.mappers.TransactonMapper;
+import ch.ipt.JpaSwaggerLearning.mappers.TransactionMapper;
 import ch.ipt.JpaSwaggerLearning.model.TransactionEntity;
 import ch.ipt.JpaSwaggerLearning.openapi.model.TransactionDTO;
 import ch.ipt.JpaSwaggerLearning.repository.TransactionRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,17 +12,20 @@ import java.util.List;
 @Service
 public class TransactionService {
 
-    @Autowired
-    private TransactionRepository transactionRepository;
-    @Autowired
-    private TransactonMapper transactionMapper;
+    private final TransactionRepository transactionRepository;
+    private final TransactionMapper transactionMapper;
+
+    public TransactionService(TransactionRepository transactionRepository, TransactionMapper transactionMapper) {
+        this.transactionRepository = transactionRepository;
+        this.transactionMapper = transactionMapper;
+    }
 
     public List<TransactionDTO> listTransactions(){
         List<TransactionEntity> transactionEntities = transactionRepository.findAll();
         List<TransactionDTO> transactions = new ArrayList<>();
 
         for(TransactionEntity transactionEntity : transactionEntities){
-            transactions.add(transactionMapper.MapTransactionEntityToTransactionDTO(transactionEntity));
+            transactions.add(transactionMapper.mapTransactionEntityToTransactionDTO(transactionEntity));
         }
         return transactions;
     }
@@ -33,7 +35,7 @@ public class TransactionService {
         List<TransactionDTO> transactions = new ArrayList<>();
 
         for(TransactionEntity transactionEntity : transactionEntities){
-            transactions.add(transactionMapper.MapTransactionEntityToTransactionDTO(transactionEntity));
+            transactions.add(transactionMapper.mapTransactionEntityToTransactionDTO(transactionEntity));
         }
         return transactions;
     }

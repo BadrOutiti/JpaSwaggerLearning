@@ -113,6 +113,7 @@ public class JpaSwaggerLearningApplication {
 			transactions.add(transaction);
 		}
 
+		//TODO: Transaction have id = null
 		transactionRepository.saveAll(transactions);
 		System.out.println("20 dummy transactions have been inserted.");
 	}

@@ -6,15 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TransactonMapper {
+public class TransactionMapper {
 
     @Autowired
     private CardMapper cardMapper;
 
-    public TransactionDTO MapTransactionEntityToTransactionDTO(TransactionEntity transactionEntity){
+    public TransactionDTO mapTransactionEntityToTransactionDTO(TransactionEntity transactionEntity){
         TransactionDTO transactionDTO = new TransactionDTO();
         transactionDTO.amountInChf(transactionEntity.getAmountInChf());
-        transactionDTO.card(cardMapper.MapCardEntityToCardDTO(transactionEntity.getCardEntity()));
+        transactionDTO.card(cardMapper.mapCardEntityToCardDTO(transactionEntity.getCardEntity()));
         transactionDTO.date((int) (transactionEntity.getDate().getTime() / 1000));
 
         return transactionDTO;

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class CardMapper {
 
-    public CardDTO MapCardEntityToCardDTO(CardEntity cardEntity){
-        return new CardDTO(cardEntity.getUUID(), cardEntity.getCardNumber());
+    public CardDTO mapCardEntityToCardDTO(CardEntity cardEntity){
+        return new CardDTO(cardEntity.getId(), cardEntity.getUUID(), cardEntity.getCardNumber());
     }
 }

@@ -5,7 +5,6 @@ import ch.ipt.JpaSwaggerLearning.model.UserEntity;
 import ch.ipt.JpaSwaggerLearning.openapi.model.UserCreateDTO;
 import ch.ipt.JpaSwaggerLearning.openapi.model.UserDTO;
 import ch.ipt.JpaSwaggerLearning.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -13,11 +12,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
-    @Autowired
-    private UserMapper userMapper;
+    public UserService(UserRepository userRepository, UserMapper userMapper) {
+        this.userRepository = userRepository;
+        this.userMapper = userMapper;
+    }
 
     public Integer createUser(UserCreateDTO userCreateDTO){
         UserEntity userEntity = new UserEntity();
@@ -36,6 +37,6 @@ public class UserService {
 
     public UserDTO getUserById(int id){
         UserEntity entity = userRepository.getReferenceById(id);
-        return userMapper.MapUserEntityToUserDTO(entity);
+        return userMapper.mapUserEntityToUserDTO(entity);
     }
 }

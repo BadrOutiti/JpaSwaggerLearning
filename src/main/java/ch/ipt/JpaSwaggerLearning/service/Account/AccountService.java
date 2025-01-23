@@ -6,7 +6,6 @@ import ch.ipt.JpaSwaggerLearning.openapi.model.AccountDTO;
 import ch.ipt.JpaSwaggerLearning.openapi.model.AccountReferenceDTO;
 import ch.ipt.JpaSwaggerLearning.repository.AccountRepository;
 import ch.ipt.JpaSwaggerLearning.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,12 +14,15 @@ import java.util.List;
 @Service
 public class AccountService {
 
-    @Autowired
-    private AccountRepository accountRepository;
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private AccountMapper accountMapper;
+    private final AccountRepository accountRepository;
+    private final UserRepository userRepository;
+    private final AccountMapper accountMapper;
+
+    public AccountService(AccountRepository accountRepository, UserRepository userRepository, AccountMapper accountMapper) {
+        this.accountRepository = accountRepository;
+        this.userRepository = userRepository;
+        this.accountMapper = accountMapper;
+    }
 
     public int createAccount(AccountReferenceDTO accountReferenceDTO){
         AccountEntity accountEntity = new AccountEntity();
@@ -34,9 +36,14 @@ public class AccountService {
         List<AccountEntity> accountEntities = accountRepository.findAll();
         List<AccountDTO> accounts = new ArrayList<>();
         for(AccountEntity account : accountEntities){
-            AccountDTO accountDTO = accountMapper.MapAccountEntityToAccountDTO(account);
+            AccountDTO accountDTO = accountMapper.mapAccountEntityToAccountDTO(account);
             accounts.add(accountDTO);
         }
         return accounts;
+    }
+
+    public AccountDTO getAccount(int accountId) {
+        AccountEntity accountEntity = accountRepository.getReferenceById(accountId);
+        return accountMapper.mapAccountEntityToAccountDTO(accountEntity);
     }
 }

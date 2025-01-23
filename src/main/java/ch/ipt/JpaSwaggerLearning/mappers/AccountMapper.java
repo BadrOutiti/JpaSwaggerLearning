@@ -13,14 +13,13 @@ import java.util.List;
 @Component
 public class AccountMapper {
 
-    public AccountDTO MapAccountEntityToAccountDTO(AccountEntity accountEntity) {
+    public AccountDTO mapAccountEntityToAccountDTO(AccountEntity accountEntity) {
         UserDTO userDTO = new UserDTO(accountEntity.getUser().getId(), accountEntity.getUser().getName());
         List<CardDTO> cards = new ArrayList<>();
         for (CardEntity card : accountEntity.getCards()) {
-            CardDTO cardDTO = new CardDTO(card.getUUID(), card.getCardNumber());
+            CardDTO cardDTO = new CardDTO(card.getId(), card.getUUID(), card.getCardNumber());
             cards.add(cardDTO);
         }
-        AccountDTO accountDTO = new AccountDTO(userDTO, cards);
-        return accountDTO;
+        return new AccountDTO(accountEntity.getId(), userDTO, cards);
     }
 }

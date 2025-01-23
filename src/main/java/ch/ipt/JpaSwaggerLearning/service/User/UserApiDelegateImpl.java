@@ -1,11 +1,10 @@
 package ch.ipt.JpaSwaggerLearning.service.User;
 
 import ch.ipt.JpaSwaggerLearning.model.UserEntity;
-import ch.ipt.JpaSwaggerLearning.openapi.api.UsersApiDelegate;
+import ch.ipt.JpaSwaggerLearning.openapi.api.UserApiDelegate;
 import ch.ipt.JpaSwaggerLearning.openapi.model.UserCreateDTO;
 import ch.ipt.JpaSwaggerLearning.openapi.model.UserDTO;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -16,24 +15,28 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class UserApiDelegateImpl implements UsersApiDelegate {
+public class UserApiDelegateImpl implements UserApiDelegate {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
-    @Override
-    public ResponseEntity<Void> createUser(@Valid @RequestBody UserCreateDTO userCreateDTO) {
-        // Create the user using the service
-        Integer userId = userService.createUser(userCreateDTO);
-
-        // Construct the URI for the created resource
-        URI location = URI.create(String.format("/users/%d", userId));
-
-        // Return 201 Created with Location header
-        return ResponseEntity.created(location).build();
+    public UserApiDelegateImpl(UserService userService) {
+        this.userService = userService;
     }
 
     @Override
+    public ResponseEntity<UserDTO> createUser(@Valid @RequestBody UserCreateDTO userCreateDTO) {
+        // Create the user using the service
+        int userId = userService.createUser(userCreateDTO);
+
+        //TODO: Dont use hardcoded string
+        URI uri = URI.create("http://localhost:8080/user/" + userId);
+
+        // Return 201 Created with the created object
+        return ResponseEntity.created(uri).body(userService.getUserById(userId));
+    }
+
+    @Override
+    //TODO: Limit can be null
     public ResponseEntity<List<UserDTO>> listUsers(Integer limit) {
         Page<UserEntity> userEntities = userService.getUsers(0, limit);
         List<UserDTO> userDTOS = userEntities.stream()

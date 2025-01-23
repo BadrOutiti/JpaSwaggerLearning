@@ -18,14 +18,14 @@ public class AccountApiDelegateImpl implements AccountApiDelegate {
     private AccountService accountService;
 
     @Override
-    public ResponseEntity<Void> createAccount(AccountReferenceDTO accountReferenceDTO){
-        int entityId = accountService.createAccount(accountReferenceDTO);
+    public ResponseEntity<AccountDTO> createAccount(AccountReferenceDTO accountReferenceDTO) {
+        int accountId = accountService.createAccount(accountReferenceDTO);
 
-        // Construct the URI for the created resource
-        URI location = URI.create(String.format("/accounts/%d", entityId));
+        //TODO: Dont use hardcoded string
+        URI location = URI.create("http://localhost:8080/account/" + accountId);
 
         // Return 201 Created with Location header
-        return ResponseEntity.created(location).build();
+        return ResponseEntity.created(location).body(accountService.getAccount(accountId));
 
     }
 
@@ -33,8 +33,4 @@ public class AccountApiDelegateImpl implements AccountApiDelegate {
     public ResponseEntity<List<AccountDTO>> listAccounts(){
         return ResponseEntity.ok(accountService.listAccounts());
     }
-
-
-
-
 }
